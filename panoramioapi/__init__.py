@@ -49,7 +49,13 @@ class PanoramioAPI(object):
         radius = radius or self.radius
 
         try:
-            assert lat and lng and radius or minx and miny and maxx and maxy
+            assert lat is not None \
+                and lng is not None \
+                and radius is not None \
+                or minx is not None \
+                and miny is not None \
+                and maxx is not None \
+                and maxy is not None
             if (minx or miny or maxx or maxy) is None:
                 minx, miny, maxx, maxy = self._calculate_bounds(lat, lng, radius)
         except AssertionError:
